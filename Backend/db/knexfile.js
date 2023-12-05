@@ -1,44 +1,24 @@
-
 module.exports = {
-    development: {
-      client: "pg",
-      migrations: {
-        getNewMigrationName: (name) => {
-          return `${+new Date()}-${name}.js`;
-        }
-      },
-      connection: "postgres://postgres:docker@localhost/movies",
+  development: {
+    client: "pg",
+    connection: "postgres://localhost/eshop",
+    migrations: {
+      getNewMigrationName: (name) => {
+        return `${+new Date()}-${name}.js`;
+      }
+    }
+  },
+  production: {
+    client: "pg",
+    connection: {
+      database: "my_db",
+      user: "username",
+      password: "password"
     },
-
-    staging: {
-      client: "pg",
-      migrations: {
-        getNewMigrationName: (name) => {
-          return `${+new Date()}-${name}.js`;
-        }
-      },
-      connection: {
-        host: "localhost",
-        port: 5432,
-        database: "movies",
-        user: "postgres",
-        password: "docker",
-      },
-    },
-
-    production: {
-      client: "pg",
-      migrations: {
-        getNewMigrationName: (name) => {
-          return `${+new Date()}-${name}.js`;
-        }
-      },
-      connection: {
-        database: "my_db",
-        user: "username",
-        password: "password",
-      },
-    },
-  };
-
-
+    migrations: {
+      getNewMigrationName: (name) => {
+        return `${+new Date()}-${name}.js`;
+      }
+    }
+  }
+};
