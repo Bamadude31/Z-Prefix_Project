@@ -1,6 +1,6 @@
 //Service and Middleware
-const app = express();
 const express = require('express');
+const app = express();
 const bodyParser = require('body-parser');
 const cors =require('cors');
 const morgan = require('morgan');
@@ -27,10 +27,10 @@ const productsRoutes = require('./routes/products');
 const usersRoutes = require('./routes/users');
 const ordersRoutes = require('./routes/orders');
 
-app.use(`${api}/categories`, categoriesRoutes);
-app.use(`${api}/products`, productsRoutes);
-app.use(`${api}/users`, usersRoutes);
-app.use(`${api}/orders`, ordersRoutes);
+app.use(`/api/categories`, categoriesRoutes);
+app.use(`/api/products`, productsRoutes);
+app.use(`/api/users`, usersRoutes);
+app.use(`/api//orders`, ordersRoutes);
 
 
 

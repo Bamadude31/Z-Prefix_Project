@@ -1,10 +1,12 @@
-import React from 'react';
+import React,  { createContext, useState }  from 'react';
 import Signin from './components/Signin';
 import Signup from './components/Signup';
 import Account from './components/Account';
 import { Route, Routes } from 'react-router-dom';
 import { AuthContextProvider } from './context/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
+
+export const supplyContext = createContext();
 
 function App() {
   return (
