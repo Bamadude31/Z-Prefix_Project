@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import Signout from './Signout';
 import { useNavigate, useParams } from 'react-router-dom';
-import { UserAuth } from '../context/AuthContext';
+import { UserAuth, SupplyContextProvider } from '../context/AuthContext';
 import { Route, Routes } from 'react-router-dom';
-import { AuthContextProvider } from './context/AuthContext';
 import { supplyContext } from "../App";
 
 export const Account = () => {
@@ -32,11 +31,11 @@ export const Account = () => {
   return (
     <div className='max-w-[600px] mx-auto my-16 p-4'>
       <h1 className='text-2xl font-bold py-4'>Account</h1>
-      <AuthContextProvider>
+      <SupplyContextProvider>
         <Routes>
           <Route path='/' element={<Signout />} />
         </Routes>
-      </AuthContextProvider>
+      </SupplyContextProvider>
       <button onClick={handleSignout} className='border px-6 py-2 my-4'>
         Logout
       </button>
@@ -69,6 +68,8 @@ export const Account = () => {
     </div>
   );
 };
+
+export default Account;
 
 //     <div className='max-w-[600px] mx-auto my-16 p-4'>
 //   <h1 className='text-2xl font-bold py-4'>Account</h1>

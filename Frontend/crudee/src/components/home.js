@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
-import { bushContext } from "../App";
+import { supplyContext } from "../App";
 
 export const Home = () => {
-  const { loggedIn, userData } = useContext(bushContext);
+  const { loggedIn, userData } = useContext(supplyContext);
 
   return (
     loggedIn ? (
@@ -13,9 +13,9 @@ export const Home = () => {
       </div>
     ) : (
       <div className="homepage">
-        <h1>Inventory Management App</h1>
-        <h2>Logistics control the world!</h2>
-        <div className="home-links">
+        <h1 className='text-center text-3xl font-bold'>Inventory Management App</h1>
+        <h2 className='text-center text-3xl font-bold'>Logistics control the world!</h2>
+        <div className="home-links, text-center text-3xl">
           <Link to='/signup'><button className='loginbutton'>Get Started</button></Link>
           <Link to='/signin'><button className='loginbutton'>Already have an account?</button></Link>
         </div>
@@ -24,3 +24,5 @@ export const Home = () => {
     )
   );
 };
+
+export default Home;

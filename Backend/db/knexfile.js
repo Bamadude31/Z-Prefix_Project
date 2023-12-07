@@ -1,7 +1,7 @@
 module.exports = {
   development: {
     client: "pg",
-    connection: "postgres://localhost/eshop",
+    connection: "postgres://localhost/postgres",
     migrations: {
       getNewMigrationName: (name) => {
         return `${+new Date()}-${name}.js`;
