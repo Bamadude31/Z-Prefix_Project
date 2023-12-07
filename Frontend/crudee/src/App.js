@@ -1,4 +1,4 @@
-import React,  { createContext, useState }  from 'react';
+import React,  { createContext, useState, UseEffect }  from 'react';
 import Home from './components/home';
 import Signin from './components/Signin';
 import Signup from './components/Signup';
@@ -9,6 +9,9 @@ import EditItem from './components/EditItem'
 import { Route, Routes, Link } from 'react-router-dom';
 import { AuthContextProvider } from './context/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
+import firebase from 'firebase/compat/app';
+import 'firebase/auth';
+
 
 export const supplyContext = createContext();
 
@@ -16,6 +19,12 @@ function App() {
   // Manages user login status
   const [loggedIn, setLoggedIn] = useState(false);
   const [userData, setUserData] = useState({});
+
+UseEffect(() => {
+  firebase.auth().onAuthStateChanged((userCredential) => {
+    console.log(userCredential)
+  })
+})
 
   return (
 
