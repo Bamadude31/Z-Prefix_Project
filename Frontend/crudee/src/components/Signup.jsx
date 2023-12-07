@@ -1,4 +1,5 @@
-import React, { useState, useContext } from 'react';
+import React from 'react';
+import { useState, useContext, useEffect }  from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { supplyContext } from "../App";
 import { UserAuth } from '../context/AuthContext';
@@ -61,29 +62,20 @@ export const Signup = () => {
   }
 
   return (
-    <div className='max-w-[700px] mx-auto my-16 p-4'>
-  <div>
-    <h1 className='text-2xl font-bold py-2'>Sign in to your account</h1>
-    <p className='py-2'>
-      Don't have an account yet?{' '}
-      <Link to='/signup' className='underline'>
-        Sign up.
-      </Link>
-    </p>
-  </div>
-  <form onSubmit={handleSubmit} className="registration-form">
-    <div className='flex flex-col py-2'>
-      <label className='py-2 font-medium'>Email Address</label>
-      <input onChange={(e) => setEmail(e.target.value)} className='border p-3' type='email' />
-    </div>
-    <div className='flex flex-col py-2'>
-      <label className='py-2 font-medium'>Password</label>
-      <input onChange={(e) => setPassword(e.target.value)} className='border p-3' type='password' />
-    </div>
-    <button className='border border-blue-500 bg-blue-600 hover:bg-blue-500 w-full p-4 my-2 text-white'>
-      Sign In
-    </button>
-  </form>
+    <div>
+    <form onSubmit={handleSubmit} className="registration-form">
+      <div className='flex flex-col py-2'>
+        <label className='py-2 font-medium'>Email Address</label>
+        <input onChange={(e) => setEmail(e.target.value)} className='border p-3' type='email' />
+      </div>
+      <div className='flex flex-col py-2'>
+        <label className='py-2 font-medium'>Password</label>
+        <input onChange={(e) => setPassword(e.target.value)} className='border p-3' type='password' />
+      </div>
+      <button className='border border-blue-500 bg-blue-600 hover:bg-blue-500 w-full p-4 my-2 text-white'>
+        Sign In
+      </button>
+    </form>
 
   <div className='reg-form'>
     <form onSubmit={postUserData} className="registration-form">
@@ -108,7 +100,7 @@ export const Signup = () => {
         <input className="label-input" type="password" name="password" value={registrationData.password} onChange={handleInputChange} placeholder={isDataFilled ? '' : "*missing password"} />
       </label>
       <div className="label-input-container">
-        <button type="submit" className='regbutton'>Register</button>
+        <button type="submit" className='regbutton'>Signup</button>
       </div>
     </form>
   </div>
@@ -117,7 +109,7 @@ export const Signup = () => {
       <h4>Already have an account?</h4>
     </div>
     <div className="registration-button">
-      <Link to='/login'><button className='regbutton'>Go To Login Page</button></Link>
+      <Link to='/Signin'><button className='regbutton'>Go To Login Page</button></Link>
     </div>
   </div>
 </div>

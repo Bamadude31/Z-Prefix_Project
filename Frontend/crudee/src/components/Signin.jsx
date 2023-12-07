@@ -1,7 +1,8 @@
-import { useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import { supplyContext } from "../App";
 import { UserAuth } from '../context/AuthContext';
+import firebase from 'firebase/compat/app';
 
 
 const Signin = () => {
@@ -14,6 +15,23 @@ const Signin = () => {
   });
   const navigate = useNavigate();
 
+  const handleSignIn = (email, password) => {
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        // Sign-in successful
+        const user = userCredential.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        // An error occurred during sign-in
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+      });
+
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setLoginData({
@@ -21,22 +39,6 @@ const Signin = () => {
       [name]: value,
     });
   };
-
-
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   if (loginData.username && loginData.password) {
-  //     setIsDataFilled(true);
-  //     try {
-  //       await signIn(loginData.username, loginData.password); // Assuming signIn function takes username and password as parameters
-  //       navigate('/account');
-  //     } catch (e) {
-  //       console.log(e.message);
-  //     }
-  //   } else {
-  //     setIsDataFilled(false);
-  //   }
-  // };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -71,17 +73,26 @@ const Signin = () => {
       <form onSubmit={handleSubmit}>
         <div className='flex flex-col py-2'>
           <label className='py-2 font-medium'>Email Address</label>
-          <input className="label-input" type="text" name="email" value={loginData.email} onChange={handleInputChange}
-          placeholder={isDataFilled ? '' : "*missing email" }/>
+          <input
+            className="label-input"
+            type="text"
+            name="username"
+            value={loginData.username}
+            onChange={handleInputChange}
+            placeholder={isDataFilled ? '' : "*missing email" }
+          />
         </div>
 
         <div className='flex flex-col py-2'>
           <label className='py-2 font-medium'>Password</label>
-          <a className="label-text">Password</a>
-          <input className="label-input" type="password" name="password" value={loginData.password} onChange={handleInputChange}
-          placeholder={isDataFilled ? '' : "*missing password" }/>
-
-
+          <input
+            className="label-input"
+            type="password"
+            name="password"
+            value={loginData.password}
+            onChange={handleInputChange}
+            placeholder={isDataFilled ? '' : "*missing password" }
+          />
         </div>
         <button className='border border-blue-500 bg-blue-600 hover:bg-blue-500 w-full p-4 my-2 text-white'>
           Sign In
@@ -90,5 +101,5 @@ const Signin = () => {
     </div>
   );
 };
-
+}
 export default Signin;

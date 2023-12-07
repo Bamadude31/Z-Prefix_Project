@@ -1,4 +1,5 @@
-import React,  { createContext, useState, UseEffect }  from 'react';
+import React from 'react';
+import { createContext, useState, UseEffect }  from 'react';
 import Home from './components/home';
 import Signin from './components/Signin';
 import Signup from './components/Signup';
@@ -20,12 +21,6 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [userData, setUserData] = useState({});
 
-UseEffect(() => {
-  firebase.auth().onAuthStateChanged((userCredential) => {
-    console.log(userCredential)
-  })
-})
-
   return (
 
     <supplyContext.Provider value={{ loggedIn, setLoggedIn, userData, setUserData, }}>
@@ -33,7 +28,7 @@ UseEffect(() => {
           <Link to='/' className='NavBarLink'>Home</Link>
           {!loggedIn ? <>
           <Link to='/signin' className='NavBarLink'>Signin</Link>
-          <Link to='/register' className='NavBarLink'>Register</Link>
+          <Link to='/signup' className='NavBarLink'>Signup</Link>
           </>: <>
           <Link to='/edit' className='NavBarLink'>Edit Item</Link>
           <Link to='/signout' className='NavBarLink'>Sign Out</Link></>
@@ -54,5 +49,4 @@ UseEffect(() => {
 </supplyContext.Provider>
 );
 }
-
 export default App;

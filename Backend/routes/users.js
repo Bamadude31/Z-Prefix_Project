@@ -102,7 +102,7 @@ router.post('/login', async (req,res) => {
 })
 
 
-router.post('/register', async (req,res)=>{
+router.post('/signup', async (req,res)=>{
     let user = new User({
         name: req.body.name,
         email: req.body.email,

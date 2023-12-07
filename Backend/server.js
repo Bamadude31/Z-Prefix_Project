@@ -1,94 +1,130 @@
-//Service and Middleware
-const express = require('express');
-const app = express();
+require('dotenv').config();
+const express = require('express')
 const bodyParser = require('body-parser');
-const cors =require('cors');
-const morgan = require('morgan');
-// const knexConfig = require('./knexfile');
-// const db = knex(knexConfig.development);
-require('dotenv/config');
-//Start of app usaage
+const app = express()
+const pgp = require('pg-promise')();
+// const db = pgp('postgres://postgres:password@localhost:5432/postgres');
+const knexConfig = require('./knexfile.js');
+const knex = require('knex')(knexConfig);
+const port = 8082
+const db = require('./queries')
+
+app.use(express.json())
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: false }));
-const api =process.env.API_URL;
-const port = process.env.PORT
+app.use(bodyParser.urlencoded({ extended: true}));
 
-
-app.use(cors());
-app.options('*', cors())
-
-//middleware
-app.use(bodyParser.json());
-app.use(morgan('tiny'));
-
-//Routes
-const categoriesRoutes = require('./routes/categories');
-const productsRoutes = require('./routes/products');
-const usersRoutes = require('./routes/users');
-const ordersRoutes = require('./routes/orders');
-
-app.use(`/api/categories`, categoriesRoutes);
-app.use(`/api/products`, productsRoutes);
-app.use(`/api/users`, usersRoutes);
-app.use(`/api//orders`, ordersRoutes);
-
-
-
-app.get(`/`,(req,res) =>{
-  res.send('root path is working')
+app.get('/', (request, response) => {
+  response.json({ info: 'CRUD application Z-Prefix' })
 })
 
-app.get(`${api}`,(req,res) => {
-  res.send('api path is working')
-})
+app.get('/users', db.getUsers)
+app.get('/users/:id', db.getUserById)
+app.post('/users', db.createUser)
+app.put('/users/:id', db.updateUser)
+app.delete('/users/:id', db.deleteUser)
 
-// Starting route to get all items
-app.get(`${api}/products`,(req,res) =>{
-  const product = {
-    id: 1,
-    UserId: 1234,
-    Item_Name: 'chair',
-    Description: 'three legged stool',
-    Quality: '15',
-  }
-  res.send('product');
-})
+app.get('/items', db.getItems);
+app.get('/items/:id', db.getItemById);
+app.post('/items', db.createItem);
+app.put('/items/:id', db.updateItem);
+app.delete('/items/:id', db.deleteItem);
 
-// Server listening
+
+
+
+
 app.listen(port, () => {
-  console.log(api);
-  console.log(`Server listening on port ${port}`);
-});
+  console.log(`App running on port ${port}.`)
+})
+
+//--------------------------------------
+// Example query for Users table
+//
+// db.query(`
+  // CREATE TABLE Users (
+  //   id SERIAL PRIMARY KEY,
+  //   first_name VARCHAR(255) NOT NULL,
+  //   last_name VARCHAR(255) NOT NULL,
+  //   username VARCHAR(255) NOT NULL,
+  //   password VARCHAR(255) NOT NULL);
+  // );
+//--------------------------------------
+// Example query for items table
+//db.query('
+    // CREATE TABLE items (
+    //   id SERIAL PRIMARY KEY,
+    //   UserId INTEGER NOT NULL,
+    //   Item_Name VARCHAR(255) NOT NULL,
+    //   Description VARCHAR(255) NOT NULL,
+    //   Quality INTEGER NOT NULL
+    // );
+
+
+// // `)
+//   .then(() => {
+//     console.log('eshop table created');
+//   })
+//   .catch(error => {
+//     console.error('Error creating eshop table', error);
+//   });
+
+// db.query('SELECT * FROM eshop')
+//   .then(data => {
+//     console.log(data)
+//     console.log("Connected to Database");
+//   })
+//   .catch(error => {
+//     console.error('Error executing query', error);
+//   });
 
 
 
 
-
-
-// _________________________________________________________________.
-
-
-
-
-//Database fix this with knex
-// mongoose.connect(process.env.CONNECTION_STRING, {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-//     dbName: 'eshop-database'
-// })
-// .then(()=>{
-//     console.log('Database Connection is ready...')
-// })
-// .catch((err)=> {
-//     console.log(err);
-// })
-
-//Older code
-
-// app.get(api +'/items', async (req, res) => {
-//   res.send('hello items!');
-
-
-  // const items = await db('items').select();
-  // res.json(items);
+// app.post('/items', async (req, res) => {
+//   const items = new Items({
+//     UserId: req.body.UserId,
+//     Item_Name: req.body.Item_Name,
+//     Description: req.body.Description,
+//     Quality: req.body.Quality
+//   })
+//   try {
+//     const newItems = await Items.save()
+//     res.status(201).json(newItems)
+//   } catch (err) {
+//     res.status(400).json({ message: err.message })
+//   }
 // });
+
+
+//////////////////////////////////////////////////////
+/* Backup queries if needed   */
+
+
+// app.get('/items',(request,response) =>{
+//   knex('items')
+//     .select('*')
+//     .then(data => {
+//       var itemNames = data.map(items => items)
+//       response.json(itemNames);
+//     })
+// })
+
+
+// app.post('/items', async (req, res) => {
+//   try {
+//     const newItem = await knex('items').insert({
+//       UserId: req.body.UserId,
+//       Item_Name: req.body.Item_Name,
+//       Description: req.body.Description,
+//       Quality: req.body.Quality
+//     }).returning('*');
+
+//     res.status(201).json(newItem);
+//   } catch (err) {
+//     res.status(400).json({ message: err.message });
+//   }
+// });
+// const usersRouter = require('./routes/users')
+// app.use('/users', usersRouter)
+// const itemsRouter = require('./routes/items')
+// app.use('/items', itemsRouter)
