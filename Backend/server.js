@@ -3,18 +3,18 @@ const express = require('express')
 const bodyParser = require('body-parser');
 const app = express()
 const pgp = require('pg-promise')();
-// const db = pgp('postgres://postgres:password@localhost:5432/postgres');
-const knexConfig = require('./knexfile.js');
+const db = pgp('postgres://postgres:password@localhost:5432/postgres');
+const knexConfig = require('./db/knexfile.js');
 const knex = require('knex')(knexConfig);
 const port = 8082
-const db = require('./queries')
+
 
 app.use(express.json())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true}));
 
 app.get('/', (request, response) => {
-  response.json({ info: 'CRUD application Z-Prefix' })
+  response.json({ info: 'Application Z-Prefix' })
 })
 
 app.get('/users', db.getUsers)
