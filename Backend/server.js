@@ -4,7 +4,11 @@ const knex = require('knex')(require('./knexfile.js')[process.env.NODE_ENV || 'd
 const bcrypt = require('bcrypt');
 
 const app = express();
-const port = 8080;
+const port = 8082;
+
+
+require('dotenv').config();
+
 
 app.use(cors());
 app.use(express.json());
@@ -102,3 +106,63 @@ app.delete('/item', async (req, res) => {
     .catch(e => res.status(500).send())
 })
 
+/* OLDER BACKEND CODE */
+
+
+// const bodyParser = require('body-parser');
+// const app = express()
+// const pgp = require('pg-promise')();
+// const db = pgp('postgres://postgres:password@localhost:5432/postgres');
+// const knexConfig = require('./db/knexfile.js');
+// const knex = require('knex')(knexConfig);
+// const port = 8082
+
+
+// app.use(bodyParser.json())
+// app.use(bodyParser.urlencoded({ extended: true}));
+
+
+// app.get('/', (request, response) => {
+//   response.json({ info: 'Application Z-Prefix' })
+// })
+
+// app.get('/users', db.getUsers)
+// app.get('/users/:id', db.getUserById)
+// app.post('/users', db.createUser)
+// app.put('/users/:id', db.updateUser)
+// app.delete('/users/:id', db.deleteUser)
+
+// app.get('/items', db.getItems);
+// app.get('/items/:id', db.getItemById);
+// app.post('/items', db.createItem);
+// app.put('/items/:id', db.updateItem);
+// app.delete('/items/:id', db.deleteItem);
+
+
+
+
+// app.listen(port, () => {
+//   console.log(`App running on port ${port}.`)
+// })
+
+//--------------------------------------
+// Example query for Users table
+//
+// db.query(`
+  // CREATE TABLE Users (
+  //   id SERIAL PRIMARY KEY,
+  //   first_name VARCHAR(255) NOT NULL,
+  //   last_name VARCHAR(255) NOT NULL,
+  //   username VARCHAR(255) NOT NULL,
+  //   password VARCHAR(255) NOT NULL);
+  // );
+//--------------------------------------
+// Example query for items table
+//db.query('
+    // CREATE TABLE items (
+    //   id SERIAL PRIMARY KEY,
+    //   UserId INTEGER NOT NULL,
+    //   Item_Name VARCHAR(255) NOT NULL,
+    //   Description VARCHAR(255) NOT NULL,
+    //   Quality INTEGER NOT NULL
+    // );
