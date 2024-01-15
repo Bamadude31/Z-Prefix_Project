@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import Signout from './Signout';
+import Signout from './signout';
 import { useNavigate, useParams } from 'react-router-dom';
 import { UserAuth, SupplyContextProvider } from '../context/AuthContext';
 import { Route, Routes } from 'react-router-dom';

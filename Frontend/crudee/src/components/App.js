@@ -1,18 +1,15 @@
-import React from 'react';
-import { createContext, useState, UseEffect }  from 'react';
-import Home from './components/home';
-import Signin from './components/Signin';
-import Signup from './components/Signup';
-import Signout from './components/Signout';
-import Account from './components/Account';
-import Dashboard from './components/dashboard'
-import EditItem from './components/EditItem'
-import { Route, Routes, Link } from 'react-router-dom';
-import { AuthContextProvider } from './context/AuthContext';
-import ProtectedRoute from './components/ProtectedRoute';
-import firebase from 'firebase/compat/app';
-import 'firebase/auth';
+//React Pieces
+import React from "react";
+import { createContext, useState } from "react";
+import { Routes, Route, Link, useNavigate } from "react-router-dom";
 
+//Pages for the Frontend
+import { Home } from "./home"; /* import { Home } from './home';*/
+import { Signin } from "./signin"; /*import { Login } from './login';*/
+import { Signup } from "./signup"; /*import { Register } from './register';*/
+import { Signout } from "./signout"; /*import { Logout } from './logout';*/
+import { Account } from "./account"; /*import { Profile } from './profile';*/
+import { MakeItem } from "./make-item"; /* import { CreateItem } from './create-item';*/
 
 export const supplyContext = createContext();
 
@@ -20,33 +17,50 @@ function App() {
   // Manages user login status
   const [loggedIn, setLoggedIn] = useState(false);
   const [userData, setUserData] = useState({});
+  const navigate = useNavigate();
 
   return (
+    <supplyContext.Provider
+      value={{ loggedIn, setLoggedIn, userData, setUserData, navigate }}
+    >
+      <nav className="Navbar, text-center text-3xl font-bold">
+        <Link to="/" className="NavBarLink">
+          Home
+        </Link>
+        {!loggedIn ? (
+          <>
+            <Link to="/signin" className="NavBarLink">
+              Signin
+            </Link>
+            <Link to="/signup" className="NavBarLink">
+              Signup
+            </Link>
+          </>
+        ) : (
+          <>
+            <Link to="/make" className="NavBarLink">
+              Make Item
+            </Link>
+            <Link to="/account" className="NavBarLink">
+              Account
+            </Link>
+            <Link to="/signout" className="NavBarLink">
+              Sign Out
+            </Link>
+          </>
+        )}
+      </nav>
 
-    <supplyContext.Provider value={{ loggedIn, setLoggedIn, userData, setUserData, }}>
-        <div className='Navbar, text-center text-3xl font-bold'>
-          <Link to='/' className='NavBarLink'>Home</Link>
-          {!loggedIn ? <>
-          <Link to='/signin' className='NavBarLink'>Signin</Link>
-          <Link to='/signup' className='NavBarLink'>Signup</Link>
-          </>: <>
-          <Link to='/edit' className='NavBarLink'>Edit Item</Link>
-          <Link to='/signout' className='NavBarLink'>Sign Out</Link></>
-          }
-        </div>
-
-{/* Setting up routes for different components */}
-<Routes>
-<Route path='/' element={<Home />} />
-<Route path='/signout' element={<Signout />} />
-<Route path='/signin' element={<Signin />} />
-<Route path='/signup' element={<Signup />} />
-<Route path='/account' element={<Account/>}/>
-<Route path='/edit' element={<EditItem />} />
-<Route path='/:username/:id' element={<Dashboard />} />
-</Routes>
-
-</supplyContext.Provider>
-);
+      {/* Setting up routes for different components */}
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/make" element={<MakeItem />} />
+        <Route path="/account" element={<Account />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/signout" element={<Signout />} />
+        <Route path="/signin" element={<Signin />} />
+      </Routes>
+    </supplyContext.Provider>
+  );
 }
 export default App;
