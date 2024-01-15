@@ -6,14 +6,15 @@ exports.seed = async function(knex) {
   // Deletes ALL existing entries
   await knex('item').del()
   await knex('item').insert([
-    {"user_id": 1, "item_name": "Banana", "description": "A delicious yellow fruit with a sweet and creamy taste. Bananas are a great source of potassium and energy.", "quantity": 10},
-    {"user_id": 1, "item_name": "Apple", "description": "Crisp and juicy, apples come in various varieties. They are not only tasty but also packed with vitamins and fiber.", "quantity": 15},
-    {"user_id": 1, "item_name": "Orange", "description": "Oranges are citrusy delights, bursting with vitamin C. Peel away the bright orange skin to reveal the succulent segments inside.", "quantity": 8},
-    {"user_id": 1, "item_name": "Grapes", "description": "Grapes are small, sweet, and versatile. Whether you prefer red or green, grapes make for a delightful snack or addition to salads.", "quantity": 20},
-    {"user_id": 2, "item_name": "Carrot", "description": "Crunchy and vibrant orange, carrots are not only great for snacking but also rich in beta-carotene, promoting healthy vision.", "quantity": 12},
-    {"user_id": 2, "item_name": "Broccoli", "description": "Green and nutrient-packed, broccoli is a cruciferous vegetable that adds a nutritional boost to your meals. Steam, roast, or stir-fry for optimal flavor.", "quantity": 18},
-    {"user_id": 2, "item_name": "Tomato", "description": "Versatile and red, tomatoes add flavor to salads, sandwiches, and sauces. They are a rich source of antioxidants and vitamins.", "quantity": 25},
-    {"user_id": 2, "item_name": "Cucumber", "description": "Cool and refreshing, cucumbers are hydrating vegetables perfect for salads and snacks. Slice them thin for a light and crisp texture.", "quantity": 14},
-    {"user_id": 2, "item_name": "Watermelon", "description": "Sweet and hydrating, watermelons are the epitome of summer refreshment. Enjoy the juicy, pink flesh for a burst of delicious flavor.", "quantity": 5}
+    {"user_id": 1, "item_name": "Car", "description": "A stylish and efficient car, perfect for daily commutes. Comes with great fuel efficiency and modern features.", "quantity": 1},
+    {"user_id": 1, "item_name": "Motorcycle", "description": "A sleek and powerful motorcycle, ideal for zipping through city traffic. Offers a thrilling riding experience with its agile handling.", "quantity": 1},
+    {"user_id": 1, "item_name": "Bicycle", "description": "A reliable and eco-friendly bicycle, suitable for short-distance travels. Promotes a healthy lifestyle and reduces carbon footprint.", "quantity": 2},
+    {"user_id": 1, "item_name": "Scooter", "description": "A convenient and compact scooter, perfect for urban mobility. Provides a comfortable ride and easy maneuverability.", "quantity": 1},
+    {"user_id": 2, "item_name": "Electric Skateboard", "description": "An innovative electric skateboard, combining fun and practicality. Enjoy effortless cruising with its electric-powered motor.", "quantity": 1},
+    {"user_id": 2, "item_name": "Segway", "description": "A self-balancing personal transporter, ideal for exploring the city. Experience smooth and effortless gliding with its advanced technology.", "quantity": 1},
+    {"user_id": 2, "item_name": "Hoverboard", "description": "A futuristic hoverboard, offering a unique and exciting way to travel. Glide smoothly and effortlessly with its self-balancing technology.", "quantity": 2},
+    {"user_id": 2, "item_name": "Electric Scooter", "description": "An eco-friendly electric scooter, perfect for short commutes. Enjoy a smooth and quiet ride with its electric-powered motor.", "quantity": 1},
+    {"user_id": 2, "item_name": "Skateboard", "description": "A classic skateboard, suitable for tricks and stunts. Experience the joy of skateboarding with its durable construction.", "quantity": 2}
   ]);
+
 };
