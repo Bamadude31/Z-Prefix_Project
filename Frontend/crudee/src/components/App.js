@@ -7,7 +7,7 @@ import { Routes, Route, Link, useNavigate } from "react-router-dom";
 
 //Pages for the Frontend
 import { Home } from "./home";
-import { Signin } from "./signin"; /*import { Login } from './login';*/
+import { Signin } from "./signin";
 import { Signup } from "./signup";
 import { Signout } from "./signout";
 import { Account } from "./account";
@@ -15,6 +15,7 @@ import { MakeItem } from "./make-item";
 
 export const supplyContext = createContext();
 
+//App functionality
 function App() {
   // Manages user login status
   const [loggedIn, setLoggedIn] = useState(false);
