@@ -32,9 +32,9 @@ You can now login to an existing account such as
 Or create a new account
 
 * While logged in you can create an item in the create item page
-  * then you will see the item in your profile page and home page
+  * then you will see the item in your account page and home page
 
-* To edit the item click view details in profile or home
+* To edit the item click view details in account or home
   * click edit and adjust the fields then click save
 
 * To delete click view details then delete

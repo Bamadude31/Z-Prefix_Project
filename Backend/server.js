@@ -1,14 +1,14 @@
-const express = require('express');
-const cors = require('cors');
-const knex = require('knex')(require('./knexfile.js')[process.env.NODE_ENV || 'development']);
-const bcrypt = require('bcrypt');
+const express = require("express");
+const cors = require("cors");
+const knex = require("knex")(
+  require("./knexfile.js")[process.env.NODE_ENV || "development"]
+);
+const bcrypt = require("bcrypt");
 
 const app = express();
 const port = 8082;
 
-
-require('dotenv').config();
-
+require("dotenv").config();
 
 app.use(cors());
 app.use(express.json());
@@ -16,98 +16,115 @@ app.use(express.json());
 app.listen(port, () => console.log(`server listening on port ${port}`));
 
 // User Registration
-app.post('/users/register', async (req, res) => {
-  const {first_name, last_name, username, password} = req.body;
+app.post("/users/signup", async (req, res) => {
+  const { first_name, last_name, username, password } = req.body;
   try {
     let usernameIsDuplicate = false;
-    const hashedPassword = await bcrypt.hash(password, 10)
-    const user = { first_name: first_name, last_name: last_name, username: username, password: hashedPassword }
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const user = {
+      first_name: first_name,
+      last_name: last_name,
+      username: username,
+      password: hashedPassword,
+    };
 
-    knex('user_data')
-      .then(userData => {
-        userData.forEach(user => {
-          if (user.username === username)
-            usernameIsDuplicate = true
-        })
-        if (!usernameIsDuplicate) {
-          knex('user_data').insert(user)
-            .then(res.status(201).send())
-        } else {
-          res.status(400).send('Username already exists')
-        }
-      })
+    knex("user_data").then((userData) => {
+      userData.forEach((user) => {
+        if (user.username === username) usernameIsDuplicate = true;
+      });
+      if (!usernameIsDuplicate) {
+        knex("user_data").insert(user).then(res.status(201).send());
+      } else {
+        res.status(400).send("Username already exists");
+      }
+    });
   } catch {
-    res.status(500).send()
+    res.status(500).send();
   }
-})
+});
 
 // User login
-app.post('/users/login', async (req, res) => {
-  const {username, password} = req.body
+app.post("/users/login", async (req, res) => {
+  const { username, password } = req.body;
   try {
-    const user = await knex('user_data').select('*').where('username', username)
+    const user = await knex("user_data")
+      .select("*")
+      .where("username", username);
     if (!user[0]) {
-      return res.status(400).send('no user found')
+      return res.status(400).send("no user found");
     }
-    if(await bcrypt.compare(password, user[0].password)) {
-      res.status(200).send({id: user[0].id, first_name: user[0].first_name, last_name: user[0].last_name, username: user[0].username})
+    if (await bcrypt.compare(password, user[0].password)) {
+      res
+        .status(200)
+        .send({
+          id: user[0].id,
+          first_name: user[0].first_name,
+          last_name: user[0].last_name,
+          username: user[0].username,
+        });
     } else {
-      res.status(400).send('wrong password')
+      res.status(400).send("wrong password");
     }
   } catch {
-    res.status(500).send()
+    res.status(500).send();
   }
-})
+});
 
 // get all item data
-app.get('/items', async (req, res) => {
-  knex('item').select('*')
-    .then(all_items => res.status(200).send(all_items))
-    .catch(e => res.status(500).send())
-})
+app.get("/items", async (req, res) => {
+  knex("item")
+    .select("*")
+    .then((all_items) => res.status(200).send(all_items))
+    .catch((e) => res.status(500).send());
+});
 
 // get user item data
-app.get('/user/items', async (req, res) => {
-  const {id} = req.query
-  knex('item').select('*')
-    .where('user_id', id)
-    .then(user_items => res.status(200).send(user_items))
-    .catch(e => res.status(500).send())
-})
+app.get("/user/items", async (req, res) => {
+  const { id } = req.query;
+  knex("item")
+    .select("*")
+    .where("user_id", id)
+    .then((user_items) => res.status(200).send(user_items))
+    .catch((e) => res.status(500).send());
+});
 
 // add a new item
-app.post('/create', async (req, res) => {
-  const {user_id, item_name, description, quantity} = req.body
-  knex('item').insert({
-    user_id: user_id,
-    item_name: item_name,
-    description: description,
-    quantity: quantity
-  }).then(data => res.status(201).send(data))
-    .catch(e => res.status(500).send(e))
-})
-
-app.patch('/item', async (req, res) => {
-  const {id, item_name, description, quantity} = req.body
-  knex('item').where('id', id)
-    .update({
-      item_name:item_name,
-      description:description,
-      quantity:quantity
+app.post("/create", async (req, res) => {
+  const { user_id, item_name, description, quantity } = req.body;
+  knex("item")
+    .insert({
+      user_id: user_id,
+      item_name: item_name,
+      description: description,
+      quantity: quantity,
     })
-    .then(x => res.status(200).send())
-    .catch(e => res.status(500).send())
-})
+    .then((data) => res.status(201).send(data))
+    .catch((e) => res.status(500).send(e));
+});
 
-app.delete('/item', async (req, res) => {
-  const {id} = req.body
-  knex('item').where('id', id).del()
-    .then(x => res.status(200).send())
-    .catch(e => res.status(500).send())
-})
+app.patch("/item", async (req, res) => {
+  const { id, item_name, description, quantity } = req.body;
+  knex("item")
+    .where("id", id)
+    .update({
+      item_name: item_name,
+      description: description,
+      quantity: quantity,
+    })
+    .then((x) => res.status(200).send())
+    .catch((e) => res.status(500).send());
+});
+
+app.delete("/item", async (req, res) => {
+  const { id } = req.body;
+  knex("item")
+    .where("id", id)
+    .del()
+    .then((x) => res.status(200).send())
+    .catch((e) => res.status(500).send());
+});
 
 /* OLDER BACKEND CODE */
-
 
 // const bodyParser = require('body-parser');
 // const app = express()
@@ -117,10 +134,8 @@ app.delete('/item', async (req, res) => {
 // const knex = require('knex')(knexConfig);
 // const port = 8082
 
-
 // app.use(bodyParser.json())
 // app.use(bodyParser.urlencoded({ extended: true}));
-
 
 // app.get('/', (request, response) => {
 //   response.json({ info: 'Application Z-Prefix' })
@@ -138,9 +153,6 @@ app.delete('/item', async (req, res) => {
 // app.put('/items/:id', db.updateItem);
 // app.delete('/items/:id', db.deleteItem);
 
-
-
-
 // app.listen(port, () => {
 //   console.log(`App running on port ${port}.`)
 // })
@@ -149,20 +161,20 @@ app.delete('/item', async (req, res) => {
 // Example query for Users table
 //
 // db.query(`
-  // CREATE TABLE Users (
-  //   id SERIAL PRIMARY KEY,
-  //   first_name VARCHAR(255) NOT NULL,
-  //   last_name VARCHAR(255) NOT NULL,
-  //   username VARCHAR(255) NOT NULL,
-  //   password VARCHAR(255) NOT NULL);
-  // );
+// CREATE TABLE Users (
+//   id SERIAL PRIMARY KEY,
+//   first_name VARCHAR(255) NOT NULL,
+//   last_name VARCHAR(255) NOT NULL,
+//   username VARCHAR(255) NOT NULL,
+//   password VARCHAR(255) NOT NULL);
+// );
 //--------------------------------------
 // Example query for items table
 //db.query('
-    // CREATE TABLE items (
-    //   id SERIAL PRIMARY KEY,
-    //   UserId INTEGER NOT NULL,
-    //   Item_Name VARCHAR(255) NOT NULL,
-    //   Description VARCHAR(255) NOT NULL,
-    //   Quality INTEGER NOT NULL
-    // );
+// CREATE TABLE items (
+//   id SERIAL PRIMARY KEY,
+//   UserId INTEGER NOT NULL,
+//   Item_Name VARCHAR(255) NOT NULL,
+//   Description VARCHAR(255) NOT NULL,
+//   Quality INTEGER NOT NULL
+// );

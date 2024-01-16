@@ -41,7 +41,7 @@ export const Signin = () => {
         res.json().then((user_data) => {
           setLoggedIn(true);
           setUserData(user_data);
-          navigate("/profile");
+          navigate("/acount");
         });
       } else if (res.status === 400) {
         setFormDataWrong(true);
@@ -74,7 +74,7 @@ export const Signin = () => {
         <button type="submit">Sign In</button>
       </form>
       <p> Don't have an account yet?</p>
-      <button onClick={() => navigate("/register")}>Create account</button>
+      <button onClick={() => navigate("/signup")}>Create account</button>
     </div>
   );
 };

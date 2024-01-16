@@ -26,13 +26,13 @@ export const Signup = () => {
     e.preventDefault();
     const { first_name, last_name, username, password } = formData;
     if (first_name && last_name && username && password) {
-      registerAccount();
+      makeAccount();
     } else {
       setFormDataMissing(true);
     }
   };
 
-  const registerAccount = () => {
+  const makeAccount = () => {
     fetch("http://localhost:8082/users/signin", {
       method: "POST",
       headers: { "content-type": "application/json" },
