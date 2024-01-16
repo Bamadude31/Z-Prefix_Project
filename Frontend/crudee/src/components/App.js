@@ -6,12 +6,12 @@ import { createContext, useState } from "react";
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
 
 //Pages for the Frontend
-import { Home } from "./home"; /* import { Home } from './home';*/
+import { Home } from "./home";
 import { Signin } from "./signin"; /*import { Login } from './login';*/
-import { Signup } from "./signup"; /*import { Register } from './register';*/
-import { Signout } from "./signout"; /*import { Logout } from './logout';*/
-import { Account } from "./account"; /*import { Profile } from './profile';*/
-import { MakeItem } from "./make-item"; /* import { CreateItem } from './create-item';*/
+import { Signup } from "./signup";
+import { Signout } from "./signout";
+import { Account } from "./account";
+import { MakeItem } from "./make-item";
 
 export const supplyContext = createContext();
 

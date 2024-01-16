@@ -1,21 +1,27 @@
-/*************** NEEDS WORK *******************/
+/*************** DONE --- NEEDS TESTING *******************/
 
 import React from "react";
-import { useState, useContext, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { supplyContext } from "../App";
+import { useContext } from "react";
+import { supplyContext } from "./App";
 
 export const Signout = () => {
-  const { setLoggedIn, setUserData } = useContext(supplyContext);
-  const navigate = useNavigate();
+  const { setUserData, setLoggedIn, navigate } = useContext(supplyContext);
 
   const handleSignout = (e) => {
     setLoggedIn(false);
     setUserData(false);
-    navigate("/login");
+    navigate("/signin");
   };
 
-  return <>{handleSignout()}</>;
+  return (
+    <>
+      <div className="login-form">
+        <h2>Are you sure you want to sign out?</h2>
+        <button onClick={handleSignout}>Log Out</button>
+      </div>
+    </>
+  );
 };
 
-export default Signout;
+// import { Link, useNavigate } from "react-router-dom";
+// export default Signout;
