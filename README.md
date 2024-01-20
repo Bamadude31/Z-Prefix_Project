@@ -8,47 +8,55 @@ Assuming you're at this point, you've probably already cloned this from GitHub..
 
 For your backend, you'll have to make your own container and database. The docker set-up will be your lifeline. Using docker with a postgres image will make this app work beautifly. I do not recommend navtive postgres on your system. There are chance of multiple issus based on the various systems used to run this project. The container name can be pretty much anything your heart desires. However, it is crucial that you name your database 'DATABASE NAME' in order for the .env connection string to work. Also make sure you run your container within the postgres image and that your username and password match the string in the backends .env file.
 
+ * create a postgres database in container
+
 ## Setup
 
 1.Git clone repo: https://github.com/Bamadude31/Z-Prefix_Project.git
 
 ## Database setup (DOCKER)
 
-2.Run docker:
+2.Run docker in a terminal:
 
-### `docker run --rm --name DATABASE_NAME -e POSTGRES_PASSWORD=docker -d -p 5432:5432 -v $HOME/docker/volumes/postgres:/var/lib/postgresql/data postgres`
+### `docker run --rm --name my_db -e POSTGRES_PASSWORD=docker -d -p 5432:5432 -v $HOME/docker/volumes/postgres:/var/lib/postgresql/data postgres`
 
-3.Start container
+3.Start container:
 
 ### `docker exec -it <PSQL-Container-ID> bash`
 
-4.Connect to postgres
+4.Connect to postgres:
 
 ### `psql -U postgres`
 
-5.Create database
+5.Create the database:
 
-### `CREATE database inventory;`
+### `CREATE DATABASE mydatabase;`
 
-6.Connect to database
+6.Connect to database:
 
-### `\c inventory`
+### `\c mydatabase`
 
-* add the line - DB_CONNECTION_STRING=`Your specific connection string`
+### Within the backend folder create a .env file
 
-7.Cd into the local Z-Prefix_Project repo and open it
+1.Add the line - DB_CONNECTION_STRING=`Your specific connection string`
+
+* Example `DB_CONNECTION_STRING=postgres://postgres:docker@localhost:5432/mydatabase`
+
+### Cd into the local Z-Prefix_Project repo and open it
 
 ### `cd Z-Prefix_Project`
 
 ### `code .`
 
-* Independently move within the frontend and backend folder and run run npm i
+* Independently move within the frontend and backend folder and run this command.
 
+### `npm i`
 
+Follow this install with this command in both folder
 
 ### `npm run setup`
 
-then run
+Finally run this command in both folders for the servers to start.
 
 ### `npm start`
 
