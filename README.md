@@ -1,6 +1,10 @@
 
 # Z-Prefix_Project
 
+-----CSS fixes needed ------
+-----Displays the data from the backend. Have to work on the user login and creation-----
+
+
 ## Pre-setup
 
 Ensure you have nothing running on this projects relevant ports (:8082, :3000, :5432)

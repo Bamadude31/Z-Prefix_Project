@@ -3,7 +3,7 @@
 import React, { useState, useContext } from "react";
 import { supplyContext } from "./App";
 
-export const EditItem = () => {
+export const MakeItem = () => {
   const { userData, navigate } = useContext(supplyContext);
   const [formDataMissing, setFormDataMissing] = useState(false);
   const [formData, setFormData] = useState({
