@@ -12,7 +12,11 @@ const port = 8082;
 app.use(cors());
 app.use(express.json());
 
-app.listen(port, () => console.log(`server listening on port ${port}`));
+app.listen(port, () => console.log(`App running on port ${port}.`));
+
+app.get("/", (req, res) => {
+  res.json({ info: "Application Z-Prefix Backend" });
+});
 
 // User Registration
 app.post("/users/signup", async (req, res) => {
@@ -67,6 +71,14 @@ app.post("/users/signin", async (req, res) => {
   }
 });
 
+// user_data;
+app.get("/user", async (req, res) => {
+  knex("user_data")
+    .select("*")
+    .then((all_user) => res.status(200).send(all_user))
+    .catch((e) => res.status(500).send());
+});
+
 // get all item data
 app.get("/items", async (req, res) => {
   knex("item")
@@ -99,6 +111,7 @@ app.post("/create", async (req, res) => {
     .catch((e) => res.status(500).send(e));
 });
 
+// update an item
 app.patch("/item", async (req, res) => {
   const { id, item_name, description, quantity } = req.body;
   knex("item")
@@ -112,6 +125,7 @@ app.patch("/item", async (req, res) => {
     .catch((e) => res.status(500).send());
 });
 
+// delete an item
 app.delete("/item", async (req, res) => {
   const { id } = req.body;
   knex("item")
@@ -149,10 +163,6 @@ app.delete("/item", async (req, res) => {
 // app.post('/items', db.createItem);
 // app.put('/items/:id', db.updateItem);
 // app.delete('/items/:id', db.deleteItem);
-
-// app.listen(port, () => {
-//   console.log(`App running on port ${port}.`)
-// })
 
 //--------------------------------------
 // Example query for Users table
