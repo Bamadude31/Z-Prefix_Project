@@ -3,12 +3,11 @@ const cors = require("cors");
 const knex = require("knex")(
   require("./knexfile.js")[process.env.NODE_ENV || "development"]
 );
+
 const bcrypt = require("bcrypt");
 
 const app = express();
 const port = 8082;
-
-require("dotenv").config();
 
 app.use(cors());
 app.use(express.json());
@@ -44,26 +43,24 @@ app.post("/users/signup", async (req, res) => {
 });
 
 // User login
-app.post("/users/login", async (req, res) => {
+app.post("/users/signin", async (req, res) => {
   const { username, password } = req.body;
   try {
     const user = await knex("user_data")
       .select("*")
       .where("username", username);
     if (!user[0]) {
-      return res.status(400).send("no user found");
+      return res.status(400).send("user is not in system");
     }
     if (await bcrypt.compare(password, user[0].password)) {
-      res
-        .status(200)
-        .send({
-          id: user[0].id,
-          first_name: user[0].first_name,
-          last_name: user[0].last_name,
-          username: user[0].username,
-        });
+      res.status(200).send({
+        id: user[0].id,
+        first_name: user[0].first_name,
+        last_name: user[0].last_name,
+        username: user[0].username,
+      });
     } else {
-      res.status(400).send("wrong password");
+      res.status(400).send("incorrect password");
     }
   } catch {
     res.status(500).send();

@@ -1,5 +1,3 @@
-/*************** DONE NEEDS TESTING *******************/
-
 import { supplyContext } from "./App";
 import React, { useState, useContext } from "react";
 
@@ -41,7 +39,7 @@ export const Signin = () => {
         res.json().then((user_data) => {
           setLoggedIn(true);
           setUserData(user_data);
-          navigate("/acount");
+          navigate("/account");
         });
       } else if (res.status === 400) {
         setFormDataWrong(true);

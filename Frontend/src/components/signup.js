@@ -1,5 +1,3 @@
-/*************** DONE----NEEDS TO BE TESTED *******************/
-
 import React, { useState, useContext } from "react";
 import { supplyContext } from "./App";
 
@@ -8,10 +6,10 @@ export const Signup = () => {
   const [formDataMissing, setFormDataMissing] = useState(false);
   const [accountCreated, setAccountCreated] = useState(false);
   const [formData, setFormData] = useState({
-    first_name: "",
-    last_name: "",
-    username: "",
-    password: "",
+    first_name: " ",
+    last_name: " ",
+    username: " ",
+    password: " ",
   });
 
   const handleInputChange = (e) => {
