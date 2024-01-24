@@ -1,0 +1,117 @@
+.details-container {
+  color: #d3d3d3;
+  /* Light gray color */
+  background-color: #202020;
+  /* Dark gray color */
+  border: 1px solid #666666;
+  /* Darker gray color */
+  font-family: 'Courier New', monospace;
+  margin: 10px;
+  padding: 15px;
+}
+
+.details-head {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.details-head h2 {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.details-desc {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #d3d3d3;
+  /* Light gray color */
+}
+
+.details-desc p {
+  text-align: center;
+  margin: 10px;
+}
+
+.edit-buttons {
+  display: flex;
+  justify-content: space-around;
+}
+
+.edit-buttons button {
+  margin: 15px;
+  font-size: 25px;
+  width: 142px;
+  background-color: rgba(0, 0, 0, 0.4);
+  border: 0;
+  color: white;
+  border-radius: 10px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  text-align: center;
+  font-size: 16px;
+  border: 1px solid rgb(87, 85, 85);
+}
+
+.edit-buttons button:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.close-details-button {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 1000px;
+  width: 40px;
+  height: 40px;
+  color: white;
+  border: 0;
+  font-size: 30px;
+}
+
+.close-details-button:hover {
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  border: 0;
+  font-size: 30px;
+}
+
+.ReactModal__Overlay {
+  background-color: rgba(0, 0, 0, 0.7) !important;
+}
+
+.ReactModal__Content {
+  background-color: #202020 !important;
+  /* Dark gray color */
+  max-width: 600px !important;
+  margin: auto;
+}
+
+.item-description {
+  height: 85.3px;
+}
+
+.item-quantity {
+  margin-top: 0;
+  text-align: center;
+  color: #d3d3d3;
+  /* Light gray color */
+}
+
+.details-head div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin: 10px;
+}
+
+.description-input {
+  width: 100%;
+  color: #d3d3d3;
+  /* Light gray color */
+}

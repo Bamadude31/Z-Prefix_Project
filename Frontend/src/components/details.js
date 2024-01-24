@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-// import "../styles/details.css";
+import "../styles/details.css";
 import { supplyContext } from "./App";
 
 export const Details = ({ item, setItem }) => {
