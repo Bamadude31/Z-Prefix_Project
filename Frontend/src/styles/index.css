@@ -53,7 +53,7 @@ p {
   /* Darker gray color */
   font-family: 'Courier New', monospace;
   margin: 5px;
-  padding: 10px;
+  padding: 15px;
 }
 
 .item-description {
@@ -79,6 +79,7 @@ button {
   text-align: center;
   font-size: 16px;
   border: 1px solid rgb(87, 85, 85);
+
 }
 
 button:hover {
