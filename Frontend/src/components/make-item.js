@@ -33,7 +33,7 @@ export const MakeItem = () => {
   };
 
   const postItem = () => {
-    fetch("http://localhost:8082/create", {
+    fetch("http://localhost:8082/make-item", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(formData),

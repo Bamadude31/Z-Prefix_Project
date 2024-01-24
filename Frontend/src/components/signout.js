@@ -1,5 +1,3 @@
-/*************** DONE --- NEEDS TESTING *******************/
-
 import React from "react";
 import { useContext } from "react";
 import { supplyContext } from "./App";
@@ -8,8 +6,8 @@ export const Signout = () => {
   const { setUserData, setLoggedIn, navigate } = useContext(supplyContext);
 
   const handleSignout = (e) => {
+    setUserData({});
     setLoggedIn(false);
-    setUserData(false);
     navigate("/signin");
   };
 

@@ -98,7 +98,7 @@ app.get("/user/items", async (req, res) => {
 });
 
 // add a new item
-app.post("/create", async (req, res) => {
+app.post("/make-item", async (req, res) => {
   const { user_id, item_name, description, quantity } = req.body;
   knex("item")
     .insert({

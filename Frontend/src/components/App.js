@@ -1,14 +1,12 @@
-/*************** DONE *******************/
-
 //React Pieces
 import React from "react";
 import { createContext, useState } from "react";
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
 
 //Pages for the Frontend
+import { Signup } from "./signup";
 import { Home } from "./home";
 import { Signin } from "./signin";
-import { Signup } from "./signup";
 import { Signout } from "./signout";
 import { Account } from "./account";
 import { MakeItem } from "./make-item";

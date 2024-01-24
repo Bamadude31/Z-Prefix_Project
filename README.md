@@ -56,7 +56,7 @@ For your backend, you'll have to make your own container and database. The docke
 
 ### `npm i`
 
-Follow this install with this command in both folder
+Follow this install with this command in the backend folder
 
 ### `npm run setup`
 
