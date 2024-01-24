@@ -7,7 +7,7 @@
 
 ## Pre-setup
 
-Ensure you have nothing running on this projects relevant ports (:8082, :3000, :5432)
+Ensure you have nothing running on this projects relevant ports (:8082, :3001, :5432)
 Assuming you're at this point, you've probably already cloned this from GitHub... But then again I don't know what kind of magic your up to looking at this project. So in the event you've been using magic to get around cloning this from GitHub. Please do so now and share your skills
 
 For your backend, you'll have to make your own container and database. The docker set-up will be your lifeline. Using docker with a postgres image will make this app work beautifly. I do not recommend navtive postgres on your system. There are chance of multiple issus based on the various systems used to run this project. The container name can be pretty much anything your heart desires. However, it is crucial that you name your database 'DATABASE NAME' in order for the .env connection string to work. Also make sure you run your container within the postgres image and that your username and password match the string in the backends .env file.
