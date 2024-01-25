@@ -6,8 +6,8 @@
   border: 1px solid #666666;
   /* Darker gray color */
   font-family: 'Courier New', monospace;
-  margin: 10px;
-  padding: 15px;
+  /* margin: 10px;
+  padding: 15px; */
 }
 
 .details-head {
@@ -20,7 +20,7 @@
 .details-head h2 {
   display: flex;
   justify-content: center;
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
 }
 
 .details-desc {
@@ -33,7 +33,7 @@
 
 .details-desc p {
   text-align: center;
-  margin: 10px;
+  /* margin: 10px; */
 }
 
 .edit-buttons {
@@ -48,15 +48,15 @@
   background-color: rgba(0, 0, 0, 0.4);
   border: 0;
   color: white;
-  border-radius: 10px;
+  /* border-radius: 10px;
   padding-top: 3px;
   padding-bottom: 3px;
   text-align: center;
   font-size: 16px;
-  border: 1px solid rgb(87, 85, 85);
+  border: 1px solid rgb(87, 85, 85); */
 }
 
-.edit-buttons button:hover {
+.edit-buttons-button:hover {
   background-color: rgba(0, 0, 0, 0.8);
 }
 
