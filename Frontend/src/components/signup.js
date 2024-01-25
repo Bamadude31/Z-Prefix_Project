@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { supplyContext } from "./App";
+// import { useNavigate } from "react-router-dom";
 
 export const Signup = () => {
   const { navigate } = useContext(supplyContext);
@@ -12,6 +13,7 @@ export const Signup = () => {
     password: " ",
   });
 
+  // const nav = useNavigate();
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({
