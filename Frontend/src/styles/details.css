@@ -1,13 +1,6 @@
 .details-container {
-  color: #d3d3d3;
-  /* Light gray color */
-  background-color: #202020;
-  /* Dark gray color */
-  border: 1px solid #666666;
-  /* Darker gray color */
-  font-family: 'Courier New', monospace;
-  /* margin: 10px;
-  padding: 15px; */
+  color: white;
+  background-color: rgb(32, 32, 32);
 }
 
 .details-head {
@@ -27,7 +20,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: #d3d3d3;
+  color: white;
   /* Light gray color */
 }
 
@@ -98,8 +91,8 @@
 .item-quantity {
   margin-top: 0;
   text-align: center;
-  color: #d3d3d3;
-  /* Light gray color */
+  color: white;
+
 }
 
 .details-head div {
@@ -112,6 +105,6 @@
 
 .description-input {
   width: 100%;
-  color: #d3d3d3;
+  color: white;
   /* Light gray color */
 }
