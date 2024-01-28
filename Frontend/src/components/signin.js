@@ -39,7 +39,7 @@ export const Signin = () => {
         res.json().then((user_data) => {
           setLoggedIn(true);
           setUserData(user_data);
-          navigate("/account");
+          navigate("/profile");
         });
       } else if (res.status === 400) {
         setFormDataWrong(true);
@@ -119,7 +119,7 @@ export const Signin = () => {
 //       if (userdata.user) {
 //         setLoggedIn(true);
 //         setUserData(userdata.user[0]);
-//         navigate("/account");
+//         navigate("/profile");
 //       } else {
 //         console.log(userdata);
 //       }

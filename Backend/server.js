@@ -3,7 +3,6 @@ const cors = require("cors");
 const knex = require("knex")(
   require("./knexfile.js")[process.env.NODE_ENV || "development"]
 );
-
 const bcrypt = require("bcrypt");
 
 const app = express();
@@ -13,10 +12,6 @@ app.use(cors());
 app.use(express.json());
 
 app.listen(port, () => console.log(`App running on port ${port}.`));
-
-app.get("/", (req, res) => {
-  res.json({ info: "Application Z-Prefix Backend" });
-});
 
 // User Registration
 app.post("/users/signup", async (req, res) => {
@@ -133,6 +128,10 @@ app.delete("/item", async (req, res) => {
     .del()
     .then((x) => res.status(200).send())
     .catch((e) => res.status(500).send());
+});
+
+app.get("/", (req, res) => {
+  res.json({ info: "Application Z-Prefix Backend" });
 });
 
 /* OLDER BACKEND CODE */

@@ -1,19 +1,17 @@
 import React, { useState, useContext } from "react";
 import { supplyContext } from "./App";
-// import { useNavigate } from "react-router-dom";
 
 export const Signup = () => {
   const { navigate } = useContext(supplyContext);
   const [formDataMissing, setFormDataMissing] = useState(false);
   const [accountCreated, setAccountCreated] = useState(false);
   const [formData, setFormData] = useState({
-    first_name: " ",
-    last_name: " ",
-    username: " ",
-    password: " ",
+    first_name: "",
+    last_name: "",
+    username: "",
+    password: "",
   });
 
-  // const nav = useNavigate();
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -25,7 +23,7 @@ export const Signup = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const { first_name, last_name, username, password } = formData;
-    if (first_name && last_name && username && password) {
+    if ((first_name, last_name, username, password)) {
       makeAccount();
     } else {
       setFormDataMissing(true);
@@ -33,7 +31,7 @@ export const Signup = () => {
   };
 
   const makeAccount = () => {
-    fetch("http://localhost:8082/users/signin", {
+    fetch("http://localhost:8082/users/signup", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(formData),

@@ -8,7 +8,7 @@ import { Signup } from "./signup";
 import { Home } from "./home";
 import { Signin } from "./signin";
 import { Signout } from "./signout";
-import { Account } from "./account";
+import { Profile } from "./profile";
 import { MakeItem } from "./make-item";
 
 export const supplyContext = createContext();
@@ -22,9 +22,9 @@ function App() {
 
   return (
     <supplyContext.Provider
-      value={{ loggedIn, setLoggedIn, userData, setUserData, navigate }}
+      value={{ setLoggedIn, userData, setUserData, navigate }}
     >
-      <nav className="Navbar, text-center text-3xl font-bold">
+      <nav className="Navbar">
         <Link to="/" className="NavBarLink">
           Home
         </Link>
@@ -42,9 +42,7 @@ function App() {
             <Link to="/make" className="NavBarLink">
               Make Item
             </Link>
-            <Link to="/account" className="NavBarLink">
-              Account
-            </Link>
+            <Link to="/profile">My Inventory</Link>
             <Link to="/signout" className="NavBarLink">
               Sign Out
             </Link>
@@ -56,7 +54,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/make" element={<MakeItem />} />
-        <Route path="/account" element={<Account />} />
+        <Route path="/profile" element={<Profile />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/signout" element={<Signout />} />
         <Route path="/signin" element={<Signin />} />

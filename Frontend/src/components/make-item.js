@@ -37,7 +37,7 @@ export const MakeItem = () => {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(formData),
-    }).then((res) => navigate("/account"));
+    }).then((res) => navigate("/profile"));
   };
 
   return (
